@@ -4,6 +4,10 @@ from .models import Redirection
 import re
 
 
+def loader_io(request):
+    return HttpResponse('loaderio-700a3036a753553143eacb48bbbf9684')
+
+
 def index(request):
     return HttpResponse(f"Índice")
 
