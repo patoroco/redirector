@@ -1,4 +1,7 @@
-from django.http import HttpResponse
+from django.shortcuts import get_object_or_404, render
+from django.http import HttpResponse, HttpResponsePermanentRedirect
+from .models import Redirection
+import re
 
 
 def index(request):
@@ -6,4 +9,9 @@ def index(request):
 
 
 def redirect(request, path):
-    return HttpResponse(f"Redirect => {request.META['HTTP_HOST']} - {path}")
+    regexp = re.compile('.*TelegramBot.*')
+    if regexp.search(request.META['HTTP_USER_AGENT']):
+        return HttpResponse('Ocultando a Telegram')
+
+    redirection = get_object_or_404(Redirection, path=path)
+    return HttpResponsePermanentRedirect(redirection.redirection)
