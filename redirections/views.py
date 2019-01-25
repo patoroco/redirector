@@ -9,9 +9,13 @@ def index(request):
 
 
 def redirect(request, path):
-    regexp = re.compile('.*TelegramBot.*')
-    if regexp.search(request.META['HTTP_USER_AGENT']):
-        return HttpResponse('Ocultando a Telegram')
+    # regexp = re.compile('.*TelegramBot.*')
+    # if regexp.search(request.META['HTTP_USER_AGENT']):
+    #     return HttpResponse('<title>Ocultando a Telegram</title>')
 
-    redirection = get_object_or_404(Redirection, path=path)
+    redirection = get_object_or_404(
+        Redirection,
+        host=request.META['HTTP_HOST'],
+        path=path
+    )
     return HttpResponsePermanentRedirect(redirection.redirection)
