@@ -1,1 +1,1 @@
-web: gunicorn djredirect.djredirect.wsgi
+web: gunicorn djredirect.wsgi
