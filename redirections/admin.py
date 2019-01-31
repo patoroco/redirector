@@ -11,5 +11,11 @@ class RedirectionAdmin(admin.ModelAdmin):
         obj.host = request.META['HTTP_HOST']
         super().save_model(request, obj, form, change)
 
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        if request.user.is_superuser:
+            return qs
+        return qs.filter(host=request.META['HTTP_HOST'])
+
 
 admin.site.register(Redirection, RedirectionAdmin)
