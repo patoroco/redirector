@@ -1,6 +1,10 @@
 from django.shortcuts import get_object_or_404, render
-from django.http import HttpResponsePermanentRedirect
+from django.http import HttpResponse, HttpResponsePermanentRedirect
 from .models import Redirection
+
+
+def index(request):
+    return HttpResponse('index')
 
 
 def redirect(request, path):
