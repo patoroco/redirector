@@ -13,4 +13,8 @@ def redirect(request, path):
         host=request.META['HTTP_HOST'],
         path=path
     )
+
+    redirection.views = redirection.views + 1
+    redirection.save()
+
     return HttpResponsePermanentRedirect(redirection.redirection)
