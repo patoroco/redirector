@@ -1,4 +1,3 @@
-import logging
 """
 Django settings for djredirect project.
 
