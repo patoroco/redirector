@@ -43,4 +43,7 @@ class RedirectionViewTests(TestCase):
 
         not_existent = self.response_gen('myhost.test', 'not_existent')
         self.assertRedirects(
-            not_existent, 'http://this_is_the_default_site.test', status_code=301)
+            not_existent, 'http://this_is_the_default_site.test', status_code=301, fetch_redirect_response=False)
+
+        #         self.assertRedirects(
+        # not_existent, 'http://this_is_the_default_site.test', status_code=301, fetch_redirect_response=False)
