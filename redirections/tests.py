@@ -29,3 +29,19 @@ class RedirectionViewTests(TestCase):
 
         bad_path = self.response_gen('myhost.test', 'not_existent')
         self.assertEqual(bad_path.status_code, 404)
+
+    def test_redirect_for_default_path(self):
+        """
+        If user tries to access to a not existent path, but the domain has a default redirect,
+        he will be redirected to that `default` place.
+        """
+        Redirection(
+            host='myhost.test',
+            path=Redirection.DEFAULT_KEY,
+            redirection='http://this_is_the_default_site.test/pic.png'
+        ).save()
+
+        not_existent = self.response_gen('myhost.test', 'not_existent')
+        self.assertRedirects(
+            not_existent, 'http://this_is_the_default_site.test/pic.png',
+            status_code=301, fetch_redirect_response=False)
