@@ -1,3 +1,4 @@
+import logging
 """
 Django settings for djredirect project.
 
@@ -32,6 +33,7 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'redirections.apps.RedirectionsConfig',
+    'django_statsd',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,6 +43,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'django_statsd.middleware.StatsdMiddleware',
     # 'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     # 'django.middleware.common.CommonMiddleware',
@@ -49,6 +52,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'django_statsd.middleware.StatsdMiddlewareTimer',
 ]
 
 ROOT_URLCONF = 'djredirect.urls'
@@ -128,3 +132,8 @@ STATICFILES_DIRS = (
 )
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# StatsD
+STATSD_HOST = os.environ.get('STATSD_HOST')
+STATSD_PORT = os.environ.get('STATSD_PORT')
+STATSD_PREFIX = os.environ.get('STATSD_PREFIX')
