@@ -1,5 +1,7 @@
 django==2.1.7
 whitenoise
 
+django-statsd
+
 gunicorn
 ipdb
