@@ -2,6 +2,8 @@ from django.db import models
 
 
 class Redirection(models.Model):
+    DEFAULT_KEY = 'default'
+
     host = models.CharField(max_length=100)
     path = models.CharField(max_length=200, blank=True)
     redirection = models.CharField(max_length=500)

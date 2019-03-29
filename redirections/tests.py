@@ -37,7 +37,7 @@ class RedirectionViewTests(TestCase):
         """
         Redirection(
             host='myhost.test',
-            path='default',
+            path=Redirection.DEFAULT_KEY,
             redirection='http://this_is_the_default_site.test'
         ).save()
 
