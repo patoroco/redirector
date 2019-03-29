@@ -38,12 +38,10 @@ class RedirectionViewTests(TestCase):
         Redirection(
             host='myhost.test',
             path=Redirection.DEFAULT_KEY,
-            redirection='http://this_is_the_default_site.test'
+            redirection='http://this_is_the_default_site.test/pic.png'
         ).save()
 
         not_existent = self.response_gen('myhost.test', 'not_existent')
         self.assertRedirects(
-            not_existent, 'http://this_is_the_default_site.test', status_code=301, fetch_redirect_response=False)
-
-        #         self.assertRedirects(
-        # not_existent, 'http://this_is_the_default_site.test', status_code=301, fetch_redirect_response=False)
+            not_existent, 'http://this_is_the_default_site.test/pic.png',
+            status_code=301, fetch_redirect_response=False)
