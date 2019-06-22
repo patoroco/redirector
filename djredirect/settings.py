@@ -136,3 +136,40 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATSD_HOST = os.environ.get('STATSD_HOST')
 STATSD_PORT = os.environ.get('STATSD_PORT')
 STATSD_PREFIX = os.environ.get('STATSD_PREFIX')
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
+            'style': '{',
+        },
+        'simple': {
+            'format': '{levelname} {asctime} {module}  {message}',
+            'style': '{',
+        },
+        'colored': {
+            '()': 'djredirect.django_colors.DjangoColorsFormatter',
+            'format': '%(levelname)s %(module)s %(message)s',
+        },
+    },
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'colored',
+        },
+    },
+    'loggers': {
+        'redirections': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        },
+        'django': {
+            'handlers': ['console'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+    },
+}

@@ -4,6 +4,10 @@ from django.http import Http404, HttpResponse, HttpResponsePermanentRedirect
 from .models import Redirection
 from .factories import RedirectionFactory
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 def index(request):
     return HttpResponse('index')
