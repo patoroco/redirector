@@ -136,6 +136,12 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATSD_HOST = os.environ.get('STATSD_HOST', '127.0.0.1')
 STATSD_PORT = os.environ.get('STATSD_PORT', 12345)
 STATSD_PREFIX = os.environ.get('STATSD_PREFIX', 'local.redirector')
+STATSD_VIEWS_TO_SKIP = [
+    r'django.contrib.admin',
+]
+
+
+# STATSD_DISABLED = True
 
 
 LOGGING = {
@@ -162,14 +168,22 @@ LOGGING = {
         },
     },
     'loggers': {
-        'redirections': {
-            'handlers': ['console'],
-            'level': 'DEBUG',
-        },
         'django': {
             'handlers': ['console'],
             'level': 'ERROR',
             'propagate': True,
+        },
+        'redirections': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        },
+        'django_statsd': {
+            'handlers': ['console'],
+            'level': 'DEBUG'
+        },
+        'statsd': {
+            'handlers': ['console'],
+            'level': 'INFO'
         },
     },
 }
