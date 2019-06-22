@@ -1,4 +1,4 @@
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import render
 from django.http import Http404, HttpResponse, HttpResponsePermanentRedirect
 
 from .models import Redirection

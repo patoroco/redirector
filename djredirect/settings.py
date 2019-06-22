@@ -133,9 +133,9 @@ STATICFILES_DIRS = (
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # StatsD
-STATSD_HOST = os.environ.get('STATSD_HOST')
-STATSD_PORT = os.environ.get('STATSD_PORT')
-STATSD_PREFIX = os.environ.get('STATSD_PREFIX')
+STATSD_HOST = os.environ.get('STATSD_HOST', '127.0.0.1')
+STATSD_PORT = os.environ.get('STATSD_PORT', 12345)
+STATSD_PREFIX = os.environ.get('STATSD_PREFIX', 'local.redirector')
 
 
 LOGGING = {
