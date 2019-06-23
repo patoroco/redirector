@@ -141,7 +141,7 @@ STATSD_VIEWS_TO_SKIP = [
 ]
 
 
-# STATSD_DISABLED = True
+STATSD_DISABLED = os.environ.get('STATSD_DISABLED', 'TRUE') == 'TRUE'
 
 
 LOGGING = {
