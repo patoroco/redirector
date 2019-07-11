@@ -14,7 +14,7 @@ server {
   listen      [::]:{{ $listen_port }};
   listen      {{ $listen_port }};
   {{ if $.NOSSL_SERVER_NAME }}server_name {{ $.NOSSL_SERVER_NAME }}; {{ end }}
-  access_log  /var/log/nginx/{{ $.APP }}-access.log c;
+  access_log  /var/log/nginx/{{ $.APP }}-access.log main;
   error_log   /var/log/nginx/{{ $.APP }}-error.log;
 {{ if (and (eq $listen_port "80") ($.SSL_INUSE)) }}
   return 301 https://$host:{{ $.PROXY_SSL_PORT }}$request_uri;
