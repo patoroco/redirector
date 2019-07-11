@@ -56,13 +56,15 @@ server {
 }
 {{ else if eq $scheme "https"}}
 server {
+  log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                                	      '$status $body_bytes_sent "$http_referer" '
+                                         '"$http_user_agent" "$http_x_forwarded_for"';
   listen      [::]:{{ $listen_port }} ssl {{ if eq $.HTTP2_SUPPORTED "true" }}http2{{ else if eq $.SPDY_SUPPORTED "true" }}spdy{{ end }};
   listen      {{ $listen_port }} ssl {{ if eq $.HTTP2_SUPPORTED "true" }}http2{{ else if eq $.SPDY_SUPPORTED "true" }}spdy{{ end }};
   {{ if $.SSL_SERVER_NAME }}server_name {{ $.SSL_SERVER_NAME }}; {{ end }}
   {{ if $.NOSSL_SERVER_NAME }}server_name {{ $.NOSSL_SERVER_NAME }}; {{ end }}
 
-  log_format   main '$remote_addr - $remote_user  [$time_local]  $status  "$request" $body_bytes_sent "$http_referer" "$http_user_agent" "$http_x_forwarded_for"';
-  access_log  /var/log/nginx/{{ $.APP }}-access.log main;
+  access_log  /var/log/nginx/{{ $.APP }}-access.log;
   error_log   /var/log/nginx/{{ $.APP }}-error.log;
 
   ssl_certificate     {{ $.APP_SSL_PATH }}/server.crt;
