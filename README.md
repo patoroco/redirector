@@ -15,3 +15,4 @@ make deploy
 ```
 
 **NOTE:** it's required to have configured `dokku` as remote.
+
