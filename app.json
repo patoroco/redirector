@@ -1,7 +1,22 @@
 {
     "scripts": {
         "dokku": {
+            "predeploy": "rm -v /app/nginx_from_git_repo/*; cp -rv /app/nginx.conf.d/* /app/nginx_from_git_repo/",
             "postdeploy": "python manage.py migrate"
         }
+    },
+    "dokku": {
+        "volumes": [
+            {
+                "host": "/var/lib/dokku/data/storage/$APP",
+                "app": "/app/storage/",
+                "phases": "deploy,run"
+            },
+            {
+                "host": "/home/dokku/$APP/nginx.conf.d/from_git_repo",
+                "app": "/app/nginx_from_git_repo/",
+                "phases": "deploy,run"
+            }
+        ]
     }
 }
