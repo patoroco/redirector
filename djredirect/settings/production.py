@@ -1,5 +1,7 @@
 from .base import *  # noqa
 
+DEBUG = False
+
 STORAGE_DIR = "/app/storage/"
 
 DATABASES = {
