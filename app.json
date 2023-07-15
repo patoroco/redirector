@@ -1,7 +1,6 @@
 {
     "scripts": {
         "dokku": {
-            "predeploy": "mkdir -p /app/nginx_from_git_repo/; rm -v /app/nginx_from_git_repo/* ; cp -rv /app/nginx.conf.d/* /app/nginx_from_git_repo/",
             "postdeploy": "python manage.py migrate"
         }
     },
