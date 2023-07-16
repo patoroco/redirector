@@ -18,8 +18,8 @@ jobs:
           name: Install pipenv
           command: |
             pip install pipenv
-            pipenv install --dev
             pipenv shell
+            pipenv install --dev
 
       # run tests!
       # this example uses Django's built-in test-runner
