@@ -1,0 +1,17 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "==2.2"
+whitenoise = "*"
+django-statsd = {ref = "temporal-2.3.0", git = "https://github.com/patoroco/django-statsd.git"}
+gunicorn = "*"
+ipdb = "*"
+flake8 = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.8"

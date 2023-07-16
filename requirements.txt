@@ -1,8 +1,0 @@
-django>=2.2
-whitenoise
-
-git+https://github.com/patoroco/django-statsd.git@temporal-2.3.0#egg=django-statsd
-
-gunicorn
-ipdb
-flake8
