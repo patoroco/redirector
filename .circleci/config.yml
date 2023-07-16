@@ -14,9 +14,12 @@ jobs:
     steps:
       - checkout
 
-      - python/install-packages:
-          tag: 3.10.1
-          pkg-manager: pipenv
+      - run:
+          name: Install pipenv
+          command: |
+            pip install pipenv
+            pipenv install --dev
+            pipenv shell
 
       # run tests!
       # this example uses Django's built-in test-runner
@@ -25,7 +28,7 @@ jobs:
       # https://nose.readthedocs.io
       - run:
           name: run tests
-          command: pipenv run pytest
+          command: pytest
 
       - store_artifacts:
           path: test-reports
