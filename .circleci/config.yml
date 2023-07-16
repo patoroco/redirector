@@ -14,11 +14,8 @@ jobs:
     steps:
       - checkout
 
-      - run:
-          name: Install pipenv
-          command: |
-            pipenv install --dev
-            pipenv shell
+      - python/install-packages:
+          pkg-manager: pipenv
 
       - run:
           name: run tests
