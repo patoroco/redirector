@@ -15,6 +15,7 @@ jobs:
       - checkout
 
       - python/install-packages:
+          tag: 3.10.1
           pkg-manager: pipenv
 
       # run tests!
