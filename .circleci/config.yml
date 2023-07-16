@@ -17,10 +17,9 @@ jobs:
       - python/install-packages:
           pkg-manager: pipenv
 
-      - run: pipenv shell
       - run:
           name: run tests
-          command: python manage.py test
+          command: pipenv run python manage.py test
 
       - store_artifacts:
           path: test-reports
