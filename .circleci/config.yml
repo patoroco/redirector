@@ -9,7 +9,7 @@ orbs:
 
 jobs:
   build:
-    executor: cimg/python:3.10
+    executor: cimg/python:3.10.1
     steps:
       - checkout
 
