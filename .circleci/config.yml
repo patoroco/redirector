@@ -9,7 +9,7 @@ orbs:
 
 jobs:
   build:
-    executor: python/default:3.8
+    executor: python/default
     steps:
       - checkout
 
