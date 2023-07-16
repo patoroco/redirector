@@ -9,7 +9,8 @@ orbs:
 
 jobs:
   build:
-    executor: cimg/python:3.10.1
+    docker:
+      - image: cimg/python:3.10.1
     steps:
       - checkout
 
