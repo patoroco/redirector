@@ -26,7 +26,7 @@ jobs:
       # https://nose.readthedocs.io
       - run:
           name: run tests
-          command: pipenv run pytest
+          command: python manage.py test
 
       - store_artifacts:
           path: test-reports
